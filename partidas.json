@@ -1,0 +1,42 @@
+[
+    {
+        "nombre": "JULIAN",
+        "fecha": "01/07/2024",
+        "puntuacion": "0"
+    },
+    {
+        "nombre": "ALEXANDER",
+        "fecha": "02/07/2024",
+        "puntuacion": "150"
+    },
+    {
+        "nombre": "MATIAS",
+        "fecha": "03/07/2024",
+        "puntuacion": "0"
+    },
+    {
+        "nombre": "KIKE",
+        "fecha": "03/07/2024",
+        "puntuacion": "0"
+    },
+    {
+        "nombre": "GABRIEL",
+        "fecha": "03/07/2024",
+        "puntuacion": "1500"
+    },
+    {
+        "nombre": "MATIAS",
+        "fecha": "03/07/2024",
+        "puntuacion": "50"
+    },
+    {
+        "nombre": "MATIAS",
+        "fecha": "03/07/2024",
+        "puntuacion": "0"
+    },
+    {
+        "nombre": "JAIMITO",
+        "fecha": "03/07/2024",
+        "puntuacion": "250"
+    }
+]
