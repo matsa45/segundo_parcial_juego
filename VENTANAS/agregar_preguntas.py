@@ -7,6 +7,7 @@ from constantes import *
 pygame.init()
 
 fuente =  pygame.font.SysFont("Arial Narrow",40)
+fuente_boton = pygame.font.SysFont("Arial Narrow",23)
 
 abc_imagen = image.load('abc.png')
 abc_imagen = transform.scale(abc_imagen,(110,70))
@@ -28,6 +29,9 @@ cuadro_respuesta_c['superficie'].fill(COLOR_AZUL)
 
 cuadro_respuesta_correcta = {"superficie":pygame.Surface(CUADRO_AGREGAR),"rectangulo":pygame.Rect(0,0,0,0)}
 cuadro_respuesta_correcta['superficie'].fill(COLOR_AZUL)
+
+boton_volver = {"superficie":pygame.Surface(TAMAÑO_BOTON_VOLVER),"rectangulo":pygame.Rect(0,0,0,0)}
+boton_volver['superficie'].fill(COLOR_AZUL) 
 
 cargar_respuestas = {"superficie":pygame.Surface(CUADRO_AGREGAR),"rectangulo":pygame.Rect(0,0,0,0)}
 cargar_respuestas['superficie'].fill(COLOR_BLANCO) 
@@ -98,8 +102,11 @@ def agregar_preguntas(pantalla:pygame.Surface,eventos,):
 
         if evento.type == pygame.QUIT:
             retorno = "salir"
+                
         
-        elif evento.type == pygame.MOUSEBUTTONDOWN and evento.button == 1:
+        if evento.type == pygame.MOUSEBUTTONDOWN and evento.button == 1:
+            if boton_volver['rectangulo'].collidepoint(evento.pos):
+                    retorno = "menu"
             if cuadro_pregunta['rectangulo'].collidepoint(evento.pos):
                 caja_activa = "pregunta"
                 
@@ -108,7 +115,10 @@ def agregar_preguntas(pantalla:pygame.Surface,eventos,):
                 
             elif cuadro_respuesta_b['rectangulo'].collidepoint(evento.pos):
                 caja_activa = "respuesta_b"
-                
+            
+            elif boton_volver['rectangulo'].collidepoint(evento.pos):
+                caja_activa = "volver"
+
             elif cuadro_respuesta_c['rectangulo'].collidepoint(evento.pos):
                 caja_activa = "respuesta_c"
                 
@@ -117,6 +127,9 @@ def agregar_preguntas(pantalla:pygame.Surface,eventos,):
             
             elif cargar_respuestas['rectangulo'].collidepoint(evento.pos):
                 caja_activa = 'cargar_lista'
+            
+            
+                    
                 
 
     if caja_activa == "pregunta":
@@ -138,7 +151,7 @@ def agregar_preguntas(pantalla:pygame.Surface,eventos,):
     elif caja_activa == 'respuesta_correcta':
           bandera_respuesta_correcta = True
           respuesta_correcta = escribir_texto(eventos,respuesta_correcta, bandera_respuesta_correcta)
-    
+
     elif caja_activa == "cargar_lista":
         if pregunta != '' and respuesta_a != '' and respuesta_b != '' and respuesta_c != '' and respuesta_correcta != '':
             nueva_lista = guardar_lista_preguntas(pregunta,respuesta_a, respuesta_b, respuesta_c, respuesta_correcta)
@@ -180,6 +193,10 @@ def agregar_preguntas(pantalla:pygame.Surface,eventos,):
 
     cargar_respuestas['rectangulo'] = pantalla.blit(cargar_respuestas['superficie'], (400,420))
     cargar_respuestas['superficie'].fill(COLOR_BLANCO)
+
+    boton_volver['rectangulo'] = pantalla.blit(boton_volver['superficie'], (0,460))
+    boton_volver['superficie'].fill(COLOR_AZUL)
+    blit_text(boton_volver['superficie'],"VOLVER",(10,10),fuente_boton,COLOR_BLANCO)
     
     pantalla.blit(abc_imagen, (290,400))
 
